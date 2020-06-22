@@ -20,7 +20,7 @@ form {
     margin: 17px auto;
 }
 
-form input[type=text] {
+form input[type=text], form input[type=number], form input[type=tel] {
     padding: 10px;
     width: calc(100% - 20px);
     margin: 10px 0;
