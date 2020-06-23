@@ -17,4 +17,24 @@ $("#button").on("click", () => {
         alert("Enter your number phone");
         return false;
     }
+
+    $.ajax({
+        url: 'ajax/main.php',
+        type: "POST",
+        cache: false,
+        data: {
+            first_name: first_name,
+            last_name: last_name,
+            age: age,
+            tel: tel
+        },
+        dataType: 'html',
+        beforeSend: () => {
+            $("#button").prop("disable", true);
+        },
+        success: () => {
+            alert("Save success😁");
+            $("#button").prop("disable", false);
+        }
+    })
 });
