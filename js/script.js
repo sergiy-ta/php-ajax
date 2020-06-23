@@ -32,9 +32,13 @@ $("#button").on("click", () => {
         beforeSend: () => {
             $("#button").prop("disable", true);
         },
-        success: () => {
-            alert("Save success😁");
-            $("#button").prop("disable", false);
+        success: (data) => {
+            if (data) {
+                alert("Save success😁");
+                $("#button").prop("disable", false);
+            } else {
+                alert("Not save success😔");
+            }
         }
     })
 });
