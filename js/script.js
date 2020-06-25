@@ -1,31 +1,35 @@
-var ajax = new XMLHttpRequest();
-var method = "GET";
-var url = "ajax/getUserFromUsers.php";
-var asynchronus = true;
+setInterval(() => {
+    var ajax = new XMLHttpRequest();
+    var method = "GET";
+    var url = "ajax/getUserFromUsers.php";
+    var asynchronus = true;
 
-ajax.open(method, url, asynchronus);
-ajax.send();
+    ajax.open(method, url, asynchronus);
+    ajax.send();
 
-ajax.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        for(var a = 0; a < data.length; a++) {
-            var first_name = data[a].first_name;
-            var last_name = data[a].last_name;
-            var age = data[a].age;
-            var tel = data[a].tel;
+    ajax.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            for(var a = 0; a < data.length; a++) {
+                var first_name = data[a].first_name;
+                var last_name = data[a].last_name;
+                var age = data[a].age;
+                var tel = data[a].tel;
 
-            var html = "";
-            html += "<tr>";
-                html += "<td>" + first_name + "</td>";
-                html += "<td>" + last_name + "</td>";
-                html += "<td>" + age + "</td>";
-                html += "<td>" + tel + "</td>";
-            html += "</tr>";
-            document.getElementById("data").innerHTML += html;
+                var html = "";
+                html += "<tr>";
+                    html += "<td>" + first_name + "</td>";
+                    html += "<td>" + last_name + "</td>";
+                    html += "<td>" + age + "</td>";
+                    html += "<td>" + tel + "</td>";
+                html += "</tr>";
+                document.getElementById("data").innerHTML += html;
+            }
         }
-    }
-};
+    };
+    document.getElementById("data").innerHTML = "";
+}, 1000);
+
 
 
 
