@@ -6,8 +6,6 @@ var asynchronus = true;
 ajax.open(method, url, asynchronus);
 ajax.send();
 
-console.log("ser");
-
 ajax.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
@@ -16,6 +14,15 @@ ajax.onreadystatechange = function() {
             var last_name = data[a].last_name;
             var age = data[a].age;
             var tel = data[a].tel;
+
+            var html = "";
+            html += "<tr>";
+                html += "<td>" + first_name + "</td>";
+                html += "<td>" + last_name + "</td>";
+                html += "<td>" + age + "</td>";
+                html += "<td>" + tel + "</td>";
+            html += "</tr>";
+            document.getElementById("data").innerHTML += html;
         }
     }
 };
