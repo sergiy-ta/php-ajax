@@ -1,3 +1,27 @@
+var ajax = new XMLHttpRequest();
+var method = "GET";
+var url = "ajax/getUserFromUsers.php";
+var asynchronus = true;
+
+ajax.open(method, url, asynchronus);
+ajax.send();
+
+console.log("ser");
+
+ajax.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        for(var a = 0; a < data.length; a++) {
+            var first_name = data[a].first_name;
+            var last_name = data[a].last_name;
+            var age = data[a].age;
+            var tel = data[a].tel;
+        }
+    }
+};
+
+
+
 $("#button").on("click", () => {
     let first_name = $("#first_name").val().trim();
     let last_name = $("#last_name").val().trim();
@@ -19,7 +43,7 @@ $("#button").on("click", () => {
     }
 
     $.ajax({
-        url: 'ajax/main.php',
+        url: 'ajax/setUserToUsers.php',
         type: "POST",
         cache: false,
         data: {

@@ -14,4 +14,14 @@ class DB {
         $this->conectDB()->query("INSERT INTO users (first_name, last_name, age, tel) VALUE('$first_name', '$last_name', '$age', '$tel')");
         $this->conectDB()->close();
     }
+
+    public function getToPHPAjax() {
+        $data = [];
+        $data_mysql = $this->conectDB()->query("SELECT * FROM users");
+        while ($row = mysqli_fetch_assoc($data_mysql)) {
+            $data[] = $row;
+        }
+        $this->conectDB()->close();
+        return $data;
+    }
 }
